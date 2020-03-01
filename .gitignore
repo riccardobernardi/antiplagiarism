@@ -2,3 +2,13 @@
 *.xml
 .idea/.DS_Store
 *.iml
+*.pyc
+antiplagiarism.egg-info/dependency_links.txt
+antiplagiarism.egg-info/PKG-INFO
+antiplagiarism.egg-info/requires.txt
+antiplagiarism.egg-info/SOURCES.txt
+antiplagiarism.egg-info/top_level.txt
+antiplagiarism/__init__.py
+/build
+/dist
+upload.sh
