@@ -1,2 +1,3 @@
 /venv
 *.xml
+.idea/.DS_Store
