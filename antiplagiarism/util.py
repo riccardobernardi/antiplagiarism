@@ -26,11 +26,11 @@ def jaccard(x, u):
 		return 0
 
 
-def antiplagiarism(s="", type=".c", grams=2):
-	if s == "":
+def antiplagiarism(path="", type=".c", grams=2):
+	if path == "":
 		list(os.listdir("./")).filter(lambda x: type in x).map(lambda x: helper(x, grams))
 	else:
-		list(os.listdir(s)).filter(lambda x: type in x).map(lambda x: helper(x, grams))
+		list(os.listdir(path)).filter(lambda x: type in x).map(lambda x: helper(x, grams))
 	exited = set()
 	files.map(lambda x: files.filter(lambda m: m[0] != x[0]).next(lambda k: exited.add(x[0])).filter(
 		lambda f: f[0] not in exited).map(lambda u: (x[0], u[0], jaccard(x, u))).map(
