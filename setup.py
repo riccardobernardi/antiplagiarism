@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="antiplagiarism",
-    version="0.0.13",
+    version="0.0.15",
     author="Bernardi Riccardo",
     author_email="riccardo.bernardi@rocketmail.com",
     description="antiplagiarism library to detect plagiarism especially on code works",
@@ -19,6 +19,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-		'pygraham'
+		'pygraham',
+        'numpy'
     ],
 )

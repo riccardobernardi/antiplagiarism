@@ -1,4 +1,6 @@
 import os
+
+import numpy as np
 from pygraham import *
 import hashlib
 
@@ -43,7 +45,7 @@ def antiplagiarism(path="", type=".c", grams=2,threshold=0):
 	m = files.map(lambda x: files.filter(lambda m: m[0] != x[0]).next(lambda k: exited.add(x[0])).filter(
 		lambda f: f[0] not in exited).map(lambda u: (x[0], u[0], jaccard(x, u))).filter(lambda x: x[2] > threshold).map(
 		lambda x: x[0].split("/")[-1] + " == " + x[1].split("/")[-1] + " --> " + str(round(x[2] * 100, 2)) + "%"))
+	m = m.filter(lambda x: len(x)>0)
+	m = np.array(m).flatten()
 
-	for i in m:
-		for j in i:
-			print(j)
+	return m
