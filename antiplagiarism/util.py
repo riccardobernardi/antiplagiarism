@@ -11,6 +11,7 @@ def helper(x, grams):
 		s = ""
 		for i in ff:
 			try:
+				i = i.replace(" ","").replace(",","")
 				files[x].add(hashlib.md5(i.encode('utf-8')).hexdigest())
 			except:
 				print("error of codec in: ", x)
@@ -32,23 +33,17 @@ def jaccard(x, u):
 		return 0
 
 
-def antiplagiarism(path="", type=".c", grams=2):
+def antiplagiarism(path="", type=".c", grams=2,threshold=0):
 	if path == "":
 		list(os.listdir("./")).filter(lambda x: type in x).map(lambda x: helper(x, grams))
 	else:
 		list(os.listdir(path)).filter(lambda x: type in x).map(lambda x: helper(path + "/" + x, grams))
 	exited = set()
-	# maxim = set()
-	files.map(lambda x: files.filter(lambda m: m[0] != x[0]).next(lambda k: exited.add(x[0])).filter(
-		lambda f: f[0] not in exited).map(lambda u: (x[0], u[0], jaccard(x, u))).map(
+
+	m = files.map(lambda x: files.filter(lambda m: m[0] != x[0]).next(lambda k: exited.add(x[0])).filter(
+		lambda f: f[0] not in exited).map(lambda u: (x[0], u[0], jaccard(x, u))).filter(lambda x: x[2] > threshold).map(
 		lambda x: x[0].split("/")[-1] + " == " + x[1].split("/")[-1] + " --> " + str(round(x[2] * 100, 2)) + "%"))
-	# .next(lambda x: print(x)).next(
-	# 	maxim.add([round(x[2] * 100, 2), str(x[0] + " == " + x[1])])
-	# ))
-	#
-	# maxim = list(maxim)
-	# sorted(maxim, key=lambda x: x[1])
 
-	#print()
-
-	#.next(lambda x: print(x)))
+	for i in m:
+		for j in i:
+			print(j)
