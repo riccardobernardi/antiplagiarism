@@ -12,3 +12,4 @@ antiplagiarism/__init__.py
 /build
 /dist
 upload.sh
+.DS_Store
